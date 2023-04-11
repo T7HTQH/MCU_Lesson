@@ -1,5 +1,4 @@
 #include <reg51.h>
-#include <math.h>
 
 unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
 
@@ -37,16 +36,18 @@ void seg_show(unsigned char where,unsigned int num)
 void seg_showln(long int number)
 {
 	long int what=0;
-	what=number/100000;
-	seg_show(6,what);
-	seg_show(5,number/10000%10);
-	seg_show(4,number/10000%100);
-	what=number/100%1000;
-	seg_show(3,what);
-	what=number/10%10000;
-	seg_show(2,what);
-	what=number%100000;
+	what=number/100000%10;
 	seg_show(1,what);
+	what=number/10000%10;
+	seg_show(2,what);
+	what=number/1000%10;
+	seg_show(3,what);
+	what=number/100%10;
+	seg_show(4,what);
+	what=number/10%10;
+	seg_show(5,what);
+	what=number%10;
+	seg_show(6,what);
 	
 }
 

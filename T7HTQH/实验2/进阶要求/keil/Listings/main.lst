@@ -1,0 +1,148 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/12/2023 01:03:22 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <math.h>
+   3          
+   4          unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+   5          
+   6          sbit seg1=P3^0;
+   7          sbit seg2=P3^1;
+   8          sbit seg3=P3^2;
+   9          sbit seg4=P3^3;
+  10          sbit seg5=P3^4;
+  11          sbit seg6=P3^5;
+  12          
+  13          void delay_ms(unsigned char t)
+  14          {
+  15   1        unsigned char i;
+  16   1        while(t--)
+  17   1        {
+  18   2          for(i=0;i<110;i++);
+  19   2        }
+  20   1      }
+  21          
+  22          void seg_show(unsigned char where,long int num,unsigned char point)
+  23          {
+  24   1        P3=0xff;
+  25   1        P2=0x00;
+  26   1        switch(where)
+  27   1        {
+  28   2          case 1:seg1=0;;P2=seg[num];break;
+  29   2          case 2:seg2=0;P2=seg[num];break;
+  30   2          case 3:seg3=0;P2=seg[num];break;
+  31   2          case 4:seg4=0;P2=seg[num];break;
+  32   2          case 5:seg5=0;P2=seg[num];break;
+  33   2          case 6:seg6=0;P2=seg[num];break;
+  34   2        }
+  35   1        if(point)
+  36   1        {
+  37   2          P2=P2|0x80;
+  38   2        }
+  39   1      }
+  40          
+  41          void seg_showln(float number)
+  42          {
+  43   1        long int what=0;
+  44   1        char point_where=6;
+  45   1        if(number<10)
+  46   1        {
+  47   2          point_where=1;
+  48   2        }
+  49   1        else if(number<100)
+  50   1        {
+  51   2          point_where=2;
+  52   2        }
+  53   1        else if(number<1000)
+  54   1        {
+C51 COMPILER V9.60.7.0   MAIN                                                              04/12/2023 01:03:22 PAGE 2   
+
+  55   2          point_where=3;
+  56   2        }
+  57   1        else if(number<10000)
+  58   1        {
+  59   2          point_where=4;
+  60   2        }
+  61   1        else if(number<100000)
+  62   1        {
+  63   2          point_where=5;
+  64   2        }
+  65   1        what=number*pow(10,point_where);
+  66   1        switch(point_where)
+  67   1        {
+  68   2          case 1: seg_show(1,what/100000%10,0);
+  69   2                  seg_show(2,what/10000%10,0);
+  70   2                  seg_show(3,what/1000%10,0);
+  71   2                  seg_show(4,what/100%10,0);
+  72   2                  seg_show(5,what/10%10,1);
+  73   2                  seg_show(6,what%10,0);
+  74   2                  break;
+  75   2          case 2: seg_show(1,what/100000%10,0);
+  76   2                  seg_show(2,what/10000%10,0);
+  77   2                  seg_show(3,what/1000%10,0);
+  78   2                  seg_show(4,what/100%10,1);
+  79   2                  seg_show(5,what/10%10,0);
+  80   2                  seg_show(6,what%10,0);
+  81   2                  break;
+  82   2          case 3: seg_show(1,what/100000%10,0);
+  83   2                  seg_show(2,what/10000%10,0);
+  84   2                  seg_show(3,what/1000%10,1);
+  85   2                  seg_show(4,what/100%10,0);
+  86   2                  seg_show(5,what/10%10,0);
+  87   2                  seg_show(6,what%10,0);
+  88   2                  break;
+  89   2          case 4: seg_show(1,what/100000%10,0);
+  90   2                  seg_show(2,what/10000%10,1);
+  91   2                  seg_show(3,what/1000%10,0);
+  92   2                  seg_show(4,what/100%10,0);
+  93   2                  seg_show(5,what/10%10,0);
+  94   2                  seg_show(6,what%10,0);
+  95   2                  break;
+  96   2          case 5: seg_show(1,what/100000%10,1);
+  97   2                  seg_show(2,what/10000%10,0);
+  98   2                  seg_show(3,what/1000%10,0);
+  99   2                  seg_show(4,what/100%10,0);
+ 100   2                  seg_show(5,what/10%10,0);
+ 101   2                  seg_show(6,what%10,0);
+ 102   2                  break;
+ 103   2          default:seg_show(1,what/100000%10,0);
+ 104   2                  seg_show(2,what/10000%10,0);
+ 105   2                  seg_show(3,what/1000%10,0);
+ 106   2                  seg_show(4,what/100%10,0);
+ 107   2                  seg_show(5,what/10%10,0);
+ 108   2                  seg_show(6,what%10,0);
+ 109   2                  break;
+ 110   2        }
+ 111   1      }
+ 112          
+ 113          void main()
+ 114          {
+ 115   1        while(1)
+ 116   1        {
+C51 COMPILER V9.60.7.0   MAIN                                                              04/12/2023 01:03:22 PAGE 3   
+
+ 117   2          seg_showln(1234.5);
+ 118   2        }
+ 119   1        
+ 120   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1681    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16      15
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

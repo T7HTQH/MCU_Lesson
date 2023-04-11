@@ -1,8 +1,8 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/12/2023  00:21:55  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/12/2023  00:24:51  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
-D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\niumengwei-2-1 PRINT (.\Listings\niumengwei-2-1.m51)
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\niumengwei-1-1 PRINT (.\Listings\niumengwei-1-1.m51)
 
 
 MEMORY MODEL: SMALL
@@ -16,7 +16,7 @@ INPUT MODULES INCLUDED:
   D:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
 
 
-LINK MAP OF MODULE:  .\Objects\niumengwei-2-1 (MAIN)
+LINK MAP OF MODULE:  .\Objects\niumengwei-1-1 (MAIN)
 
 
             TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
@@ -41,7 +41,7 @@ LINK MAP OF MODULE:  .\Objects\niumengwei-2-1 (MAIN)
 
 
 
-OVERLAY MAP OF MODULE:   .\Objects\niumengwei-2-1 (MAIN)
+OVERLAY MAP OF MODULE:   .\Objects\niumengwei-1-1 (MAIN)
 
 
 SEGMENT                          DATA_GROUP 
@@ -59,10 +59,10 @@ SEGMENT                          DATA_GROUP
 
 
 
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/12/2023  00:21:55  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/12/2023  00:24:51  PAGE 2
 
 
-SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-1 (MAIN)
+SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-1-1 (MAIN)
 
   VALUE           TYPE          NAME
   ----------------------------------
@@ -119,7 +119,7 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-1 (MAIN)
   D:0018H         SYMBOL        number
   -------         DO            
   D:001CH         SYMBOL        what
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/12/2023  00:21:55  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/12/2023  00:24:51  PAGE 3
 
 
   -------         ENDDO         
