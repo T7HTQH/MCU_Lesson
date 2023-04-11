@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/11/2023 23:47:38 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #include <math.h>
+   3          
+   4          unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+   5          
+   6          sbit seg1=P3^0;
+   7          sbit seg2=P3^1;
+   8          sbit seg3=P3^2;
+   9          sbit seg4=P3^3;
+  10          sbit seg5=P3^4;
+  11          sbit seg6=P3^5;
+  12          
+  13          void delay_ms(unsigned char t)
+  14          {
+  15   1        unsigned char i;
+  16   1        while(t--)
+  17   1        {
+  18   2          for(i=0;i<110;i++);
+  19   2        }
+  20   1      }
+  21          
+  22          void seg_show(unsigned char where,unsigned int num)
+  23          {
+  24   1        P3=0xff;
+  25   1        P2=0x00;
+  26   1        switch(where)
+  27   1        {
+  28   2          case 1:seg1=0;;P2=seg[num];break;
+  29   2          case 2:seg2=0;P2=seg[num];break;
+  30   2          case 3:seg3=0;P2=seg[num];break;
+  31   2          case 4:seg4=0;P2=seg[num];break;
+  32   2          case 5:seg5=0;P2=seg[num];break;
+  33   2          case 6:seg6=0;P2=seg[num];break;
+  34   2        }
+  35   1      }
+  36          
+  37          void seg_showln(long int number)
+  38          {
+  39   1        long int what=0;
+  40   1        what=number/100000;
+  41   1        seg_show(6,what);
+  42   1        seg_show(5,number/10000%10);
+  43   1        seg_show(4,number/10000%100);
+  44   1        what=number/100%1000;
+  45   1        seg_show(3,what);
+  46   1        what=number/10%10000;
+  47   1        seg_show(2,what);
+  48   1        what=number%100000;
+  49   1        seg_show(1,what);
+  50   1        
+  51   1      }
+  52          
+  53          void main()
+  54          {
+C51 COMPILER V9.60.7.0   MAIN                                                              04/11/2023 23:47:38 PAGE 2   
+
+  55   1        while(1)
+  56   1        {
+  57   2          seg_showln(123456);
+  58   2        }
+  59   1        
+  60   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    356    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
