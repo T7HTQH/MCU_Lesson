@@ -32,7 +32,7 @@ void seg_show(unsigned char where,unsigned int num,unsigned char point)
 		case 5:seg5=0;P2=seg[num];break;
 		case 6:seg6=0;P2=seg[num];break;
 	}
-	if(point)
+	if(point==1)
 	{
 		P2=P2|0x80;
 	}
