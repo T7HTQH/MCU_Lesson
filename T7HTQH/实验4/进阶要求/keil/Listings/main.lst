@@ -1,0 +1,83 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/15/2023 22:53:16 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          void delay_ms(unsigned int t)
+   4          {
+   5   1        unsigned char i;
+   6   1        while(t--)
+   7   1        {
+   8   2          for(i=0;i<110;i++);
+   9   2        }
+  10   1      }
+  11          
+  12          void main()
+  13          {
+  14   1        IT0=0;
+  15   1        IT1=0;
+  16   1        EX1=1;
+  17   1        EX0=1;
+  18   1        PX1=1;
+  19   1        EA=1;
+  20   1        while(1)
+  21   1        {
+  22   2          P2=0xff;
+  23   2        }
+  24   1      
+  25   1      }
+  26          
+  27          void out_1() interrupt 0
+  28          {
+  29   1        P2=0x00;
+  30   1        delay_ms(1000);
+  31   1        delay_ms(1000);
+  32   1        P2=0xff;
+  33   1        delay_ms(1000);
+  34   1        delay_ms(1000);
+  35   1        P2=0x00;
+  36   1        delay_ms(1000);
+  37   1        delay_ms(1000);
+  38   1        P2=0xff;
+  39   1        delay_ms(1000);
+  40   1        delay_ms(1000);
+  41   1      }
+  42          
+  43          void out_2() interrupt 2
+  44          {
+  45   1        P2=0x55;
+  46   1        delay_ms(1000);
+  47   1        delay_ms(1000);
+  48   1        P2=0xaa;
+  49   1        delay_ms(1000);
+  50   1        delay_ms(1000);
+  51   1        P2=0x55;
+  52   1        delay_ms(1000);
+  53   1        delay_ms(1000);
+  54   1        P2=0xaa;
+C51 COMPILER V9.60.7.0   MAIN                                                              04/15/2023 22:53:16 PAGE 2   
+
+  55   1        delay_ms(1000);
+  56   1        delay_ms(1000);
+  57   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    156    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

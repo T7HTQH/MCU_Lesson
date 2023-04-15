@@ -1,0 +1,156 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/15/2023  23:20:15  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\niumengwei-1-1 PRINT (.\Listings\niumengwei-1-1.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\main.obj (MAIN)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\niumengwei-1-1 (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0018H     UNIT         ?DT?MAIN
+            IDATA   0020H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     008CH     UNIT         ?C_C51STARTUP
+            CODE    009AH     0075H     UNIT         ?PR?MAIN?MAIN
+            CODE    010FH     0055H     UNIT         ?PR?TIMER0_OUT?MAIN
+            CODE    0164H     0055H     UNIT         ?C?LIB_CODE
+            CODE    01B9H     0015H     UNIT         ?PR?TIMER_INIT?MAIN
+            CODE    01CEH     0013H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\niumengwei-1-1 (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?TIMER_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-1-1 (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/15/2023  23:20:15  PAGE 2
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0008H         PUBLIC        second
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  C:01B9H         PUBLIC        Timer_init
+  C:009AH         PUBLIC        main
+  D:0089H         PUBLIC        TMOD
+  D:000AH         PUBLIC        hour
+  D:000CH         PUBLIC        seg
+  D:001CH         PUBLIC        con
+  D:001EH         PUBLIC        min
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  D:008CH         PUBLIC        TH0
+  D:008AH         PUBLIC        TL0
+  B:0088H.4       PUBLIC        TR0
+  C:010FH         PUBLIC        Timer0_out
+  -------         PROC          TIMER_INIT
+  C:01B9H         LINE#         7
+  C:01B9H         LINE#         8
+  C:01B9H         LINE#         9
+  C:01BCH         LINE#         10
+  C:01BFH         LINE#         11
+  C:01C2H         LINE#         12
+  C:01C5H         LINE#         13
+  C:01C7H         LINE#         14
+  C:01C9H         LINE#         15
+  C:01CBH         LINE#         16
+  C:01CDH         LINE#         18
+  -------         ENDPROC       TIMER_INIT
+  -------         PROC          MAIN
+  -------         DO            
+  D:0002H         SYMBOL        i
+  D:0003H         SYMBOL        watch
+  -------         ENDDO         
+  C:009AH         LINE#         20
+  C:009AH         LINE#         21
+  C:009AH         LINE#         23
+  C:009DH         LINE#         25
+  C:009DH         LINE#         26
+  C:009DH         LINE#         27
+  C:009FH         LINE#         28
+  C:009FH         LINE#         29
+  C:00ACH         LINE#         30
+  C:00C0H         LINE#         31
+  C:00C0H         LINE#         32
+  C:00C6H         LINE#         33
+  C:00D3H         LINE#         34
+  C:00D9H         LINE#         35
+  C:00E6H         LINE#         36
+  C:00ECH         LINE#         37
+  C:0100H         LINE#         38
+  C:0100H         LINE#         39
+  C:0107H         LINE#         40
+  -------         ENDPROC       MAIN
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/15/2023  23:20:15  PAGE 3
+
+
+  -------         PROC          TIMER0_OUT
+  C:010FH         LINE#         45
+  C:0113H         LINE#         47
+  C:011BH         LINE#         48
+  C:0123H         LINE#         49
+  C:0123H         LINE#         50
+  C:0129H         LINE#         51
+  C:0131H         LINE#         52
+  C:0137H         LINE#         53
+  C:0137H         LINE#         54
+  C:013BH         LINE#         55
+  C:0143H         LINE#         56
+  C:0149H         LINE#         57
+  C:0149H         LINE#         58
+  C:014DH         LINE#         59
+  C:0155H         LINE#         60
+  C:015BH         LINE#         61
+  C:015BH         LINE#         62
+  C:015FH         LINE#         63
+  C:015FH         LINE#         64
+  C:015FH         LINE#         65
+  C:015FH         LINE#         66
+  C:015FH         LINE#         67
+  -------         ENDPROC       TIMER0_OUT
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        ?C?UIDIV
+  C:0164H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+Program Size: data=33.0 xdata=0 code=473
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

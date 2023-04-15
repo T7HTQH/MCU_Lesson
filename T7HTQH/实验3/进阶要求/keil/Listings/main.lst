@@ -1,0 +1,93 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/15/2023 22:46:37 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+   4          
+   5          unsigned char key_number=18,watch;
+   6          
+   7          void delay_ms(unsigned int t)
+   8          {
+   9   1        unsigned char i;
+  10   1        while(t--)
+  11   1        {
+  12   2          for(i=0;i<110;i++);
+  13   2        }
+  14   1      }
+  15          
+  16          void key_scan()
+  17          {
+  18   1        unsigned char hang,line;
+  19   1        unsigned char where;
+  20   1        P1=0x0f;
+  21   1        if(P1!=0x0f)
+  22   1        {
+  23   2          delay_ms(10);
+  24   2          where=P1&0x0f;
+  25   2          switch(where)
+  26   2          {
+  27   3            case 0x0e:hang=0;break;
+  28   3            case 0x0d:hang=1;break;
+  29   3            case 0x0b:hang=2;break;
+  30   3            case 0x07:hang=3;break;
+  31   3          }
+  32   2          P1=0xf0;
+  33   2          where=P1&0xf0;
+  34   2          switch(where)
+  35   2          {
+  36   3            case 0xe0:line=0;break;
+  37   3            case 0xd0:line=1;break;
+  38   3            case 0xb0:line=2;break;
+  39   3            case 0x70:line=3;break;
+  40   3          }
+  41   2          key_number=hang*4+line;
+  42   2        }
+  43   1        
+  44   1      }
+  45          
+  46          void main()
+  47          {
+  48   1        while(1)
+  49   1        {
+  50   2          key_scan();
+  51   2          switch(key_number)
+  52   2          {
+  53   3            case 0:watch=1;break;
+  54   3            case 1:watch=2;break;
+C51 COMPILER V9.60.7.0   MAIN                                                              04/15/2023 22:46:37 PAGE 2   
+
+  55   3            case 2:watch=3;break;
+  56   3            case 4:watch=4;break;
+  57   3            case 5:watch=5;break;
+  58   3            case 6:watch=6;break;
+  59   3            case 8:watch=7;break;
+  60   3            case 9:watch=8;break;
+  61   3            case 10:watch=9;break;
+  62   3            case 13:watch=0;break;
+  63   3      //      default : watch=0;break;
+  64   3          }
+  65   2          P2=seg[watch];
+  66   2        }
+  67   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    227    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     18       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

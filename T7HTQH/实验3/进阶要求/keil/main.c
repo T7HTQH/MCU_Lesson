@@ -1,0 +1,67 @@
+#include <reg51.h>
+
+unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+
+unsigned char key_number=18,watch;
+
+void delay_ms(unsigned int t)
+{
+	unsigned char i;
+	while(t--)
+	{
+		for(i=0;i<110;i++);
+	}
+}
+
+void key_scan()
+{
+	unsigned char hang,line;
+	unsigned char where;
+	P1=0x0f;
+	if(P1!=0x0f)
+	{
+		delay_ms(10);
+		where=P1&0x0f;
+		switch(where)
+		{
+			case 0x0e:hang=0;break;
+			case 0x0d:hang=1;break;
+			case 0x0b:hang=2;break;
+			case 0x07:hang=3;break;
+		}
+		P1=0xf0;
+		where=P1&0xf0;
+		switch(where)
+		{
+			case 0xe0:line=0;break;
+			case 0xd0:line=1;break;
+			case 0xb0:line=2;break;
+			case 0x70:line=3;break;
+		}
+		key_number=hang*4+line;
+	}
+	
+}
+
+void main()
+{
+	while(1)
+	{
+		key_scan();
+		switch(key_number)
+		{
+			case 0:watch=1;break;
+			case 1:watch=2;break;
+			case 2:watch=3;break;
+			case 4:watch=4;break;
+			case 5:watch=5;break;
+			case 6:watch=6;break;
+			case 8:watch=7;break;
+			case 9:watch=8;break;
+			case 10:watch=9;break;
+			case 13:watch=0;break;
+//			default : watch=0;break;
+		}
+		P2=seg[watch];
+	}
+}
