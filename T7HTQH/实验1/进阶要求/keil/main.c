@@ -1,10 +1,10 @@
 #include <reg51.h>
 
-sbit key3 = P1^4;
+sbit key3 = P1^4; 						//定于P1^4为按键引脚
 
-unsigned char key_number; 
+unsigned char key_number; 				//定义键值变量
 
-void delay_ms(unsigned char t)
+void delay_ms(unsigned char t)			//定义毫秒延时函数
 {
 	unsigned char i;
 	while(t--)
@@ -14,16 +14,16 @@ void delay_ms(unsigned char t)
 
 }
 
-void key_scan()
+void key_scan()							//定义按键扫描函数
 {
 	unsigned char i;
-	if(key3==0)
+	if(key3==0)							//按键按下的情况
 	{
-			while(1)
+			while(1)					//松手检测，如果按键弹起则跳出while循环
 			{
 				for(i=0;i<8;i++)
 				{
-						P2=0x01<<i;
+						P2=0x01<<i;		//利用二进制移位实现流水灯
 					delay_ms(1000);
 					
 				}
@@ -36,21 +36,21 @@ void key_scan()
 }
 
 
-void led_show()
+void led_show()							//按键未按下时的流水灯函数
 {
 	unsigned char i;
 	for(i=0;i<8;i++)
 	{
-			P2=0x80>>i;
+			P2=0x80>>i;					//利用二进制移位实现流水灯
 		delay_ms(1000);
 	}
 }
 
 void main()
 {
-		while(1)
+		while(1)						//死循环
 		{
-			key_scan();
-			led_show();
+			key_scan();					//按键扫描函数
+			led_show();					//按键未按下时的流水灯显示
 		}
 }

@@ -2,7 +2,7 @@
 
 unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
 
-unsigned int second=30,min=24,hour=13;
+unsigned int second=30,min=24,hour=13,con;
 
 void delay_ms(unsigned int t)
 {
@@ -59,7 +59,6 @@ void Timer0_out() interrupt 1
 	con++;
 	if(con==10000)
 	{
-		con_flag=1;
 		con=0;
 		second++;
 		if(second==60)
