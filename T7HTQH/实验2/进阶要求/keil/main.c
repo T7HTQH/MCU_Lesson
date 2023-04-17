@@ -1,5 +1,8 @@
 #include <reg51.h>
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
+
 
 unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
 
@@ -21,92 +24,47 @@ void delay_ms(unsigned char t)
 
 void seg_show(unsigned char where,unsigned int num,unsigned char point)
 {
-	P3=0xff;
-	P2=0x00;
 	switch(where)
 	{
-		case 1:seg1=0;;P2=seg[num];break;
-		case 2:seg2=0;P2=seg[num];break;
-		case 3:seg3=0;P2=seg[num];break;
-		case 4:seg4=0;P2=seg[num];break;
-		case 5:seg5=0;P2=seg[num];break;
-		case 6:seg6=0;P2=seg[num];break;
+		case 1:P3=0xff&(~(0x01));P2=seg[num];break;
+		case 2:P3=0xff&(~(0x01<<1));P2=seg[num];break;
+		case 3:P3=0xff&(~(0x01<<2));P2=seg[num];break;
+		case 4:P3=0xff&(~(0x01<<3));P2=seg[num];break;
+		case 5:P3=0xff&(~(0x01<<4));P2=seg[num];break;
+		case 6:P3=0xff&(~(0x01<<5));P2=seg[num];break;
 	}
 	if(point==1)
 	{
 		P2=P2|0x80;
 	}
+	if(where<6)
+	{
+		delay_ms(8);
+	}
+	
 }
 
 void seg_showln(float number)
 {
-	long int what=0;
-	char point_where=6;
-	if(number<10)
+	unsigned char change[7];
+	unsigned char con=0,i=0,point_flag=0;
+	sprintf(change,"%f",number);
+	point_flag=0;
+	for(i=0;i<8;)
 	{
-		point_where=1;
-	}
-	else if(number<100)
-	{
-		point_where=2;
-	}
-	else if(number<1000)
-	{
-		point_where=3;
-	}
-	else if(number<10000)
-	{
-		point_where=4;
-	}
-	else if(number<100000)
-	{
-		point_where=5;
-	}
-	what=number*pow(10,point_where);
-	switch(point_where)
-	{
-		case 1:	seg_show(1,what/100000%10,0);
-						seg_show(2,what/10000%10,0);
-						seg_show(3,what/1000%10,0);
-						seg_show(4,what/100%10,0);
-						seg_show(5,what/10%10,1);
-						seg_show(6,what%10,0);
-						break;
-		case 2:	seg_show(1,what/100000%10,0);
-						seg_show(2,what/10000%10,0);
-						seg_show(3,what/1000%10,0);
-						seg_show(4,what/100%10,1);
-						seg_show(5,what/10%10,0);
-						seg_show(6,what%10,0);
-						break;
-		case 3:	seg_show(1,what/100000%10,0);
-						seg_show(2,what/10000%10,0);
-						seg_show(3,what/1000%10,1);
-						seg_show(4,what/100%10,0);
-						seg_show(5,what/10%10,0);
-						seg_show(6,what%10,0);
-						break;
-		case 4:	seg_show(1,what/100000%10,0);
-						seg_show(2,what/10000%10,1);
-						seg_show(3,what/1000%10,0);
-						seg_show(4,what/100%10,0);
-						seg_show(5,what/10%10,0);
-						seg_show(6,what%10,0);
-						break;
-		case 5:	seg_show(1,what/100000%10,1);
-						seg_show(2,what/10000%10,0);
-						seg_show(3,what/1000%10,0);
-						seg_show(4,what/100%10,0);
-						seg_show(5,what/10%10,0);
-						seg_show(6,what%10,0);
-						break;
-		default:seg_show(1,what/100000%10,0);
-						seg_show(2,what/10000%10,0);
-						seg_show(3,what/1000%10,0);
-						seg_show(4,what/100%10,0);
-						seg_show(5,what/10%10,0);
-						seg_show(6,what%10,0);
-						break;
+		
+		if(change[i]=='.')
+		{
+			point_flag=1;
+			con=i;
+			seg_show(i,change[i-1]-48,point_flag);
+		}
+		else if(!(point_flag==1&&change[i]=='0'))
+		{
+			seg_show(i+1-point_flag,change[i]-48,0);
+		}
+		i++;
+		
 	}
 }
 
@@ -114,7 +72,7 @@ void main()
 {
 	while(1)
 	{
-		seg_showln(1234.5);
+		seg_showln(1.56);
 	}
 	
 }
