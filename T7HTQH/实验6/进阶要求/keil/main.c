@@ -43,22 +43,22 @@ void main()
 					case 1:watch=hour%10;break;		//显示小时的个位数
 					case 2:watch=min/10%10;break;	//显示分钟的十位数
 					case 3:watch=min%10;break;		//显示分钟的个位数
-					case 4:watch=second/10%10;break;//显示秒的的十位数
-					case 5:watch=second%10;break;
+					case 4:watch=second/10%10;break;//显示秒钟的十位数
+					case 5:watch=second%10;break;	//显示秒钟的个位数
 				}
 				
 				P2=seg[watch];
-				delay_ms(1);
+				delay_ms(1);	//防止proteus抽风，，，，
 				}
 		
 
 	}
 }
 
-void Timer0_out() interrupt 1
+void Timer0_out() interrupt 1	//定时器0中断
 {
 	con++;
-	if(con==10000)
+	if(con==10000)				//con计够10000次，即1s后，开始给秒钟++，同时检测是否需要进位
 	{
 		con=0;
 		second++;
