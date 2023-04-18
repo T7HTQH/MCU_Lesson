@@ -3,7 +3,7 @@
 unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
 											//定义数码管显示数组
 
-unsigned char key_number=18,watch;			//定义键值变量
+unsigned char key_number=18;			//定义键值变量
 
 void delay_ms(unsigned int t)				//定义延时函数
 {
@@ -46,6 +46,7 @@ void key_scan()								//定义按键扫描函数
 
 void main()
 {
+	unsigned char watch     				//定义中间变量
 	while(1)
 	{
 		key_scan();							//按键扫描
@@ -63,6 +64,6 @@ void main()
 			case 13:watch=0;break;
 //			default : watch=0;break;
 		}
-		P2=seg[watch];
+		P2=seg[watch];						//将二次映射后的值输出到数码管
 	}
 }
