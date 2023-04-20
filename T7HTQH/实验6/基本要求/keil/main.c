@@ -2,9 +2,9 @@
 
 sbit LED=P2^0;				//定义LED引脚
 
-unsigned int con;			//定义中间变量
+unsigned int con=0;			//定义中间变量
 
-void Timer_init()				//设置定时器0每100us进入一次中断
+void Timer_init()				//设置定时器0每100us进入一次中
 {
 	TMOD &= 0xF0;			//设置定时器模式
 	TMOD |= 0x02;			//设置定时器模式
