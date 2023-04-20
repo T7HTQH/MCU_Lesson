@@ -1,0 +1,82 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              04/20/2023 15:05:50 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: d:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main
+                    -.lst) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          
+   3          
+   4          sbit CS=P3^1;        //片选端口
+   5          sbit SCK =P3^0;      //时钟端口
+   6          sbit DIN=P3^2;       //数据输入
+   7          
+   8          
+   9          unsigned int con=0;
+  10          
+  11          void Timer0_Init(void)    //1微秒@12.000MHz
+  12          {
+  13   1        TMOD &= 0xF0;     //设置定时器模式
+  14   1        TL0 = 0xF0;       //设置定时初始值
+  15   1        TH0 = 0xD8;       //设置定时初始值
+  16   1        TF0 = 0;        //清除TF0标志
+  17   1        TR0 = 1;        //定时器0开始计时
+  18   1        ET0=1;
+  19   1        EA=1;
+  20   1      }
+  21          
+  22          void DA_OUTPUT(unsigned int adata)  //DA输出函数
+  23          {
+  24   1        unsigned char i;    //定义计数变量
+  25   1        adata<<=6;        //将数据左移6位
+  26   1        SCK=0;          //拉低SCK
+  27   1        CS=0;         //拉低CS
+  28   1        for(i=0;i<12;i++)
+  29   1        {
+  30   2          SCK=0;        //拉低SCK
+  31   2          adata<<=1;      //将adata左移
+  32   2          DIN=CY;       //观察adata左移后是否有溢出，若溢出则发送1，否则发送0；
+  33   2          SCK=1;        //拉高SCK
+  34   2        }
+  35   1        CS=1;         //拉高CS
+  36   1        SCK=0;          //拉低SCK
+  37   1      }
+  38          
+  39          
+  40          void main(void)//0.01s==10ms
+  41          {
+  42   1        Timer0_Init();
+  43   1        while(1)
+  44   1        {
+  45   2          con+=6;
+  46   2          DA_OUTPUT(con);
+  47   2        }
+  48   1      }
+  49          
+  50          void out() interrupt 1
+  51          {
+  52   1        
+  53   1          con=0;
+  54   1      
+C51 COMPILER V9.60.7.0   MAIN                                                              04/20/2023 15:05:50 PAGE 2   
+
+  55   1      }
+  56          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     86    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
