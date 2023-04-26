@@ -1,10 +1,8 @@
 #include <reg51.h>
 
-
 sbit CS=P3^1;        //片选端口
 sbit SCK =P3^0;      //时钟端口
 sbit DIN=P3^2;       //数据输入
-
 
 unsigned int con=0;
 

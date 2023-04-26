@@ -47,7 +47,6 @@ void key_scan()								//定义按键扫描函数
 
 void main()
 {
-	P3=0；
 	while(1)
 	{
 		key_scan();							//按键扫描

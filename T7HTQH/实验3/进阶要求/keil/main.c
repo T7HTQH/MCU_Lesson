@@ -46,7 +46,7 @@ void key_scan()								//定义按键扫描函数
 
 void main()
 {
-	unsigned char watch     				//定义中间变量
+	unsigned char watch;     				//定义中间变量
 	while(1)
 	{
 		key_scan();							//按键扫描

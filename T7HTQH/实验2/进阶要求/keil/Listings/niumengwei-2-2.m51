@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/17/2023  14:27:56  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/26/2023  10:45:40  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
@@ -19,6 +19,7 @@ INPUT MODULES INCLUDED:
   D:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FTNPWR)
   D:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
   D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
   D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
   D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
   D:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
@@ -40,28 +41,28 @@ LINK MAP OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
                     0018H     0008H                  *** GAP ***
             BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
                     0021H.1   0000H.7                *** GAP ***
-            DATA    0022H     0024H     UNIT         _DATA_GROUP_
-            IDATA   0046H     0001H     UNIT         ?STACK
+            DATA    0022H     002CH     UNIT         _DATA_GROUP_
+            IDATA   004EH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
-            CODE    0003H     0518H     UNIT         ?C?LIB_CODE
-            CODE    051BH     046FH     UNIT         ?PR?PRINTF?PRINTF
-            CODE    098AH     008CH     UNIT         ?C_C51STARTUP
-            CODE    0A16H     0064H     UNIT         ?PR?_SEG_SHOWLN?MAIN
-            CODE    0A7AH     004AH     UNIT         ?PR?_SEG_SHOW?MAIN
-            CODE    0AC4H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
-            CODE    0AEBH     0013H     UNIT         ?C_INITSEG
-            CODE    0AFEH     0012H     UNIT         ?PR?_DELAY_MS?MAIN
-            CODE    0B10H     000DH     UNIT         ?PR?MAIN?MAIN
-            CODE    0B1DH     0003H     UNIT         ?CO?MAIN
+            CODE    0003H     060EH     UNIT         ?C?LIB_CODE
+            CODE    0611H     046FH     UNIT         ?PR?PRINTF?PRINTF
+            CODE    0A80H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0B0CH     008AH     UNIT         ?PR?_SEG_SHOWLN?MAIN
+            CODE    0B96H     004AH     UNIT         ?PR?_SEG_SHOW?MAIN
+            CODE    0BE0H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0C07H     0013H     UNIT         ?C_INITSEG
+            CODE    0C1AH     0012H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0C2CH     000DH     UNIT         ?PR?MAIN?MAIN
+            CODE    0C39H     000AH     UNIT         ?CO?MAIN
 
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 2
 
 
 OVERLAY MAP OF MODULE:   .\Objects\niumengwei-2-2 (MAIN)
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  14:27:56  PAGE 2
-
-
 
 
 SEGMENT                           BIT_GROUP          DATA_GROUP 
@@ -74,12 +75,12 @@ SEGMENT                           BIT_GROUP          DATA_GROUP
 ?PR?MAIN?MAIN                  -----    -----      -----    -----
   +--> ?PR?_SEG_SHOWLN?MAIN
 
-?PR?_SEG_SHOWLN?MAIN           -----    -----      0022H    0008H
+?PR?_SEG_SHOWLN?MAIN           -----    -----      0022H    0010H
   +--> ?CO?MAIN
   +--> ?PR?PRINTF?PRINTF
   +--> ?PR?_SEG_SHOW?MAIN
 
-?PR?PRINTF?PRINTF              0020H.0  0001H.1    002AH    001CH
+?PR?PRINTF?PRINTF              0020H.0  0001H.1    0032H    001CH
   +--> ?PR?PUTCHAR?PUTCHAR
 
 ?PR?_SEG_SHOW?MAIN             -----    -----      -----    -----
@@ -96,99 +97,103 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-  C:0B10H         PUBLIC        main
-  C:0A16H         PUBLIC        _seg_showln
+  C:0C2CH         PUBLIC        main
+  C:0B0CH         PUBLIC        _seg_showln
   D:0008H         PUBLIC        seg
-  C:0AFEH         PUBLIC        _delay_ms
-  C:0A7AH         PUBLIC        _seg_show
+  C:0C3CH         SYMBOL        _?ix1000
+  C:0C1AH         PUBLIC        _delay_ms
+  C:0B96H         PUBLIC        _seg_show
   -------         PROC          _DELAY_MS
   D:0007H         SYMBOL        t
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:0AFEH         LINE#         16
-  C:0AFEH         LINE#         17
-  C:0AFEH         LINE#         19
-  C:0B04H         LINE#         20
-  C:0B04H         LINE#         21
-  C:0B0FH         LINE#         22
-  C:0B0FH         LINE#         23
+  C:0C1AH         LINE#         18
+  C:0C1AH         LINE#         19
+  C:0C1AH         LINE#         21
+  C:0C20H         LINE#         22
+  C:0C20H         LINE#         23
+  C:0C2BH         LINE#         24
+  C:0C2BH         LINE#         25
   -------         ENDPROC       _DELAY_MS
   -------         PROC          _SEG_SHOW
   D:0007H         SYMBOL        where
   D:0004H         SYMBOL        num
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 3
+
+
   D:0003H         SYMBOL        point
-  C:0A7AH         LINE#         25
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  14:27:56  PAGE 3
-
-
-  C:0A7AH         LINE#         26
-  C:0A7AH         LINE#         27
-  C:0A8FH         LINE#         28
-  C:0A8FH         LINE#         29
-  C:0A94H         LINE#         30
-  C:0A99H         LINE#         31
-  C:0A9EH         LINE#         32
-  C:0AA3H         LINE#         33
-  C:0AA8H         LINE#         34
-  C:0AB2H         LINE#         35
-  C:0AB2H         LINE#         36
-  C:0AB5H         LINE#         37
-  C:0AB5H         LINE#         38
-  C:0AB8H         LINE#         39
-  C:0AB8H         LINE#         40
-  C:0ABEH         LINE#         41
-  C:0ABEH         LINE#         42
-  C:0AC3H         LINE#         43
-  C:0AC3H         LINE#         45
+  C:0B96H         LINE#         27
+  C:0B96H         LINE#         28
+  C:0B96H         LINE#         29
+  C:0BABH         LINE#         30
+  C:0BABH         LINE#         31
+  C:0BB0H         LINE#         32
+  C:0BB5H         LINE#         33
+  C:0BBAH         LINE#         34
+  C:0BBFH         LINE#         35
+  C:0BC4H         LINE#         36
+  C:0BCEH         LINE#         37
+  C:0BCEH         LINE#         38
+  C:0BD1H         LINE#         39
+  C:0BD1H         LINE#         40
+  C:0BD4H         LINE#         41
+  C:0BD4H         LINE#         42
+  C:0BDAH         LINE#         43
+  C:0BDAH         LINE#         44
+  C:0BDFH         LINE#         45
+  C:0BDFH         LINE#         47
   -------         ENDPROC       _SEG_SHOW
   -------         PROC          _SEG_SHOWLN
-  D:0004H         SYMBOL        number
+  D:0022H         SYMBOL        number
   -------         DO            
-  D:0022H         SYMBOL        change
-  D:0029H         SYMBOL        con
+  D:0026H         SYMBOL        what
+  D:002AH         SYMBOL        change
+  D:0031H         SYMBOL        con
   D:0002H         SYMBOL        i
   D:0001H         SYMBOL        point_flag
   -------         ENDDO         
-  C:0A16H         LINE#         47
-  C:0A16H         LINE#         48
-  C:0A16H         LINE#         50
-  C:0A19H         LINE#         51
-  C:0A32H         LINE#         52
-  C:0A34H         LINE#         53
-  C:0A35H         LINE#         54
-  C:0A35H         LINE#         56
-  C:0A3DH         LINE#         57
-  C:0A3DH         LINE#         58
-  C:0A3FH         LINE#         59
-  C:0A41H         LINE#         60
-  C:0A51H         LINE#         61
-  C:0A53H         LINE#         62
-  C:0A5FH         LINE#         63
-  C:0A5FH         LINE#         64
-  C:0A75H         LINE#         65
-  C:0A75H         LINE#         66
-  C:0A76H         LINE#         68
-  C:0A79H         LINE#         69
+  C:0B0CH         LINE#         49
+  C:0B14H         LINE#         50
+  C:0B14H         LINE#         51
+  C:0B1DH         LINE#         53
+  C:0B2EH         LINE#         54
+  C:0B31H         LINE#         56
+  C:0B4EH         LINE#         57
+  C:0B50H         LINE#         58
+  C:0B51H         LINE#         59
+  C:0B51H         LINE#         61
+  C:0B59H         LINE#         62
+  C:0B59H         LINE#         63
+  C:0B5BH         LINE#         64
+  C:0B5DH         LINE#         65
+  C:0B6DH         LINE#         66
+  C:0B6FH         LINE#         67
+  C:0B7BH         LINE#         68
+  C:0B7BH         LINE#         69
+  C:0B91H         LINE#         70
+  C:0B91H         LINE#         71
+  C:0B92H         LINE#         73
+  C:0B95H         LINE#         75
   -------         ENDPROC       _SEG_SHOWLN
   -------         PROC          MAIN
-  C:0B10H         LINE#         71
-  C:0B10H         LINE#         72
-  C:0B10H         LINE#         73
-  C:0B10H         LINE#         74
-  C:0B10H         LINE#         75
-  C:0B1BH         LINE#         76
+  C:0C2CH         LINE#         77
+  C:0C2CH         LINE#         78
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 4
+
+
+  C:0C2CH         LINE#         79
+  C:0C2CH         LINE#         80
+  C:0C2CH         LINE#         81
+  C:0C37H         LINE#         82
   -------         ENDPROC       MAIN
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  14:27:56  PAGE 4
-
-
   -------         ENDMOD        MAIN
 
   -------         MODULE        PRINTF
-  D:002AH         PUBLIC        ?_PRINTF?BYTE
-  D:002AH         PUBLIC        ?_SPRINTF?BYTE
-  C:057DH         PUBLIC        _PRINTF
-  C:0577H         PUBLIC        _SPRINTF
+  D:0032H         PUBLIC        ?_PRINTF?BYTE
+  D:0032H         PUBLIC        ?_SPRINTF?BYTE
+  C:0673H         PUBLIC        _PRINTF
+  C:066DH         PUBLIC        _SPRINTF
   -------         ENDMOD        PRINTF
 
   -------         MODULE        ?C?FPROUND
@@ -216,32 +221,36 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   C:0403H         PUBLIC        ?C?FTNPWR
   -------         ENDMOD        ?C?FTNPWR
 
+  -------         MODULE        ?C?COPY
+  C:055DH         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
   -------         MODULE        ?C?CLDPTR
-  C:048DH         PUBLIC        ?C?CLDPTR
+  C:0583H         PUBLIC        ?C?CLDPTR
   -------         ENDMOD        ?C?CLDPTR
 
   -------         MODULE        ?C?CLDOPTR
-  C:04A6H         PUBLIC        ?C?CLDOPTR
+  C:059CH         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
 
   -------         MODULE        ?C?CSTPTR
-  C:04D3H         PUBLIC        ?C?CSTPTR
+  C:05C9H         PUBLIC        ?C?CSTPTR
   -------         ENDMOD        ?C?CSTPTR
 
   -------         MODULE        ?C?PLDIIDATA
-  C:04E5H         PUBLIC        ?C?PLDIIDATA
+  C:05DBH         PUBLIC        ?C?PLDIIDATA
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 5
+
+
   -------         ENDMOD        ?C?PLDIIDATA
 
   -------         MODULE        ?C?CCASE
-  C:04F5H         PUBLIC        ?C?CCASE
+  C:05EBH         PUBLIC        ?C?CCASE
   -------         ENDMOD        ?C?CCASE
 
   -------         MODULE        PUTCHAR
-  C:0AC4H         PUBLIC        _PUTCHAR
+  C:0BE0H         PUBLIC        _PUTCHAR
   -------         ENDMOD        PUTCHAR
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/17/2023  14:27:56  PAGE 5
 
-
-
-Program Size: data=62.1 xdata=0 code=2848
+Program Size: data=70.1 xdata=0 code=3139
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

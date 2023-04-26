@@ -11,15 +11,6 @@ sbit seg4=P3^3;
 sbit seg5=P3^4;
 sbit seg6=P3^5;
 
-void delay_ms(unsigned char t)							//定义毫秒延时函数
-{
-	unsigned char i;
-	while(t--)
-	{
-		for(i=0;i<110;i++);
-	}
-}
-
 void seg_show(unsigned char where,unsigned int num)		//定义单个数码管显示函数
 {
 	P3=0xff;											//这两句是为了消除共阴极数码管在proteus仿真中出现的

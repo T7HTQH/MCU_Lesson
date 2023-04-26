@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              04/17/2023 14:27:56 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              04/26/2023 10:45:40 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -15,87 +15,94 @@ line level    source
    5          
    6          
    7          unsigned char seg[]={0x3F, 0x06, 0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
-   8          
-   9          sbit seg1=P3^0;
-  10          sbit seg2=P3^1;
-  11          sbit seg3=P3^2;
-  12          sbit seg4=P3^3;
-  13          sbit seg5=P3^4;
-  14          sbit seg6=P3^5;
-  15          
-  16          void delay_ms(unsigned char t)
-  17          {
-  18   1        unsigned char i;
-  19   1        while(t--)
-  20   1        {
-  21   2          for(i=0;i<110;i++);
-  22   2        }
-  23   1      }
-  24          
-  25          void seg_show(unsigned char where,unsigned int num,unsigned char point)
-  26          {
-  27   1        switch(where)
-  28   1        {
-  29   2          case 1:P3=0xff&(~(0x01));P2=seg[num];break;
-  30   2          case 2:P3=0xff&(~(0x01<<1));P2=seg[num];break;
-  31   2          case 3:P3=0xff&(~(0x01<<2));P2=seg[num];break;
-  32   2          case 4:P3=0xff&(~(0x01<<3));P2=seg[num];break;
-  33   2          case 5:P3=0xff&(~(0x01<<4));P2=seg[num];break;
-  34   2          case 6:P3=0xff&(~(0x01<<5));P2=seg[num];break;
-  35   2        }
-  36   1        if(point==1)
-  37   1        {
-  38   2          P2=P2|0x80;
-  39   2        }
-  40   1        if(where<6)
-  41   1        {
-  42   2          delay_ms(8);
-  43   2        }
-  44   1        
-  45   1      }
-  46          
-  47          void seg_showln(float number)
-  48          {
-  49   1        unsigned char change[7];
-  50   1        unsigned char con=0,i=0,point_flag=0;
-  51   1        sprintf(change,"%f",number);
-  52   1        point_flag=0;
-  53   1        for(i=0;i<8;)
-  54   1        {
-C51 COMPILER V9.60.7.0   MAIN                                                              04/17/2023 14:27:56 PAGE 2   
+   8                                      //定义共阴极数码管显示数组
+   9          
+  10          
+  11          sbit seg1=P3^0;                     //定义P3^0,P3^1,P3^2,P3^4,P3^5
+  12          sbit seg2=P3^1;                     //为数码管阴极引脚
+  13          sbit seg3=P3^2;
+  14          sbit seg4=P3^3;
+  15          sbit seg5=P3^4;
+  16          sbit seg6=P3^5;
+  17          
+  18          void delay_ms(unsigned char t)              //定义毫秒延时函数
+  19          {
+  20   1        unsigned char i;
+  21   1        while(t--)
+  22   1        {
+  23   2          for(i=0;i<110;i++);
+  24   2        }
+  25   1      }
+  26          
+  27          void seg_show(unsigned char where,unsigned int num,unsigned char point)//定义单个数码管显示函数
+             -，point为小数标志位
+  28          {
+  29   1        switch(where)                   //数码管位选
+  30   1        {
+  31   2          case 1:P3=0xff&(~(0x01));P2=seg[num];break;
+  32   2          case 2:P3=0xff&(~(0x01<<1));P2=seg[num];break;
+  33   2          case 3:P3=0xff&(~(0x01<<2));P2=seg[num];break;
+  34   2          case 4:P3=0xff&(~(0x01<<3));P2=seg[num];break;
+  35   2          case 5:P3=0xff&(~(0x01<<4));P2=seg[num];break;
+  36   2          case 6:P3=0xff&(~(0x01<<5));P2=seg[num];break;
+  37   2        }
+  38   1        if(point==1)                    //如果point为1，则将数据与0x80相与
+  39   1        {
+  40   2          P2=P2|0x80;
+  41   2        }
+  42   1        if(where<6)
+  43   1        {
+  44   2          delay_ms(8);                  //消抖，不知道为什么仿真也会出现数码管抖动
+  45   2        }
+  46   1        
+  47   1      }
+  48          
+  49          void seg_showln(float number)             //定义数码管整体显示函数
+  50          {
+  51   1        long int what=0;                  //定义中间变量what，防止long int型数据在传输中出错
+  52   1      
+  53   1        unsigned char change[7]="";             //定义中间字符串
+C51 COMPILER V9.60.7.0   MAIN                                                              04/26/2023 10:45:40 PAGE 2   
 
-  55   2          
-  56   2          if(change[i]=='.')
-  57   2          {
-  58   3            point_flag=1;
-  59   3            con=i;
-  60   3            seg_show(i,change[i-1]-48,point_flag);
-  61   3          }
-  62   2          else if(!(point_flag==1&&change[i]=='0'))
-  63   2          {
-  64   3            seg_show(i+1-point_flag,change[i]-48,0);
-  65   3          }
-  66   2          i++;
-  67   2          
-  68   2        }
-  69   1      }
-  70          
-  71          void main()
-  72          {
-  73   1        while(1)
-  74   1        {
-  75   2          seg_showln(1.56);
-  76   2        }
-  77   1        
-  78   1      }
+  54   1        unsigned char con=0,i=0,point_flag=0;       //定义变量以及标记
+  55   1        
+  56   1          sprintf(change,"%f",number);          //利用sprintf将小数转化为字符串
+  57   1          point_flag=0;                 //重置小数点标志位
+  58   1          for(i=0;i<8;)                 //没有遇到小数点前正常显示
+  59   1          {
+  60   2      
+  61   2            if(change[i]=='.')              //遇到小数点后将小数点标志位置1
+  62   2            {
+  63   3              point_flag=1;
+  64   3              con=i;
+  65   3              seg_show(i,change[i-1]-48,point_flag);  //给小数点所在数字显示添加小数点
+  66   3            }
+  67   2            else if(!(point_flag==1&&change[i]=='0')) //防止小数位后不去除多余的0
+  68   2            {
+  69   3              seg_show(i+1-point_flag,change[i]-48,0);
+  70   3            }
+  71   2            i++;
+  72   2      
+  73   2          }
+  74   1      
+  75   1      }
+  76          
+  77          void main()
+  78          {
+  79   1        while(1)                      //死循环
+  80   1        {
+  81   2          seg_showln(10.1);               //显示小数
+  82   2        }
+  83   1        
+  84   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    205    ----
-   CONSTANT SIZE    =      3    ----
+   CODE SIZE        =    243    ----
+   CONSTANT SIZE    =     10    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     16       8
+   DATA SIZE        =     16      16
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.

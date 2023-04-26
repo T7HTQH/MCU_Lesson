@@ -50,25 +50,9 @@ void seg_showln(float number)							//定义数码管整体显示函数
 {
 	long int what=0;									//定义中间变量what，防止long int型数据在传输中出错
 
-	unsigned char change[7];							//定义中间字符串
-	unsigned char con=0,i=0,point_flag=0;				//定义变量以及标记量
-	if(number-(int)number>0)							//判断是否为小数
-	{													//整数显示
-		what=number/100000%10;							//将number中的每一位剥离显示
-		seg_show(1,what);
-		what=number/10000%10;
-		seg_show(2,what);
-		what=number/1000%10;
-		seg_show(3,what);
-		what=number/100%10;
-		seg_show(4,what);
-		what=number/10%10;
-		seg_show(5,what);
-		what=number%10;
-		seg_show(6,what);
-	}
-	else												//小数显示
-	{
+	unsigned char change[7]="";							//定义中间字符串
+	unsigned char con=0,i=0,point_flag=0;				//定义变量以及标记
+	
 		sprintf(change,"%f",number);					//利用sprintf将小数转化为字符串
 		point_flag=0;									//重置小数点标志位
 		for(i=0;i<8;)									//没有遇到小数点前正常显示
@@ -87,7 +71,6 @@ void seg_showln(float number)							//定义数码管整体显示函数
 			i++;
 
 		}
-	}
 
 }
 
@@ -95,7 +78,7 @@ void main()
 {
 	while(1)											//死循环
 	{
-		seg_showln(1.56);								//显示小数
+		seg_showln(10.1);								//显示小数
 	}
 	
 }

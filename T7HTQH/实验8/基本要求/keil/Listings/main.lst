@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              04/13/2023 15:29:39 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              04/26/2023 10:52:32 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -14,34 +14,34 @@ line level    source
    4          sbit SCK =P3^0;      //时钟端口
    5          sbit DIN=P3^2;       //数据输入
    6          
-   7          void DA_OUTPUT(unsigned int adata)
+   7          void DA_OUTPUT(unsigned int adata)  //DA输出函数
    8          {
-   9   1        unsigned char i;
-  10   1        adata<<=6;
-  11   1        SCK=0;
-  12   1        CS=0;
+   9   1        unsigned char i;    //定义计数变量
+  10   1        adata<<=6;        //将数据左移6位
+  11   1        SCK=0;          //拉低SCK
+  12   1        CS=0;         //拉低CS
   13   1        for(i=0;i<12;i++)
   14   1        {
-  15   2          SCK=0;
-  16   2          adata<<=1;
-  17   2          DIN=CY;
-  18   2          SCK=1;
+  15   2          SCK=0;        //拉低SCK
+  16   2          adata<<=1;      //将adata左移
+  17   2          DIN=CY;       //观察adata左移后是否有溢出，若溢出则发送1，否则发送0；
+  18   2          SCK=1;        //拉高SCK
   19   2        }
-  20   1        CS=1;
-  21   1        SCK=0;
+  20   1        CS=1;         //拉高CS
+  21   1        SCK=0;          //拉低SCK
   22   1      }
   23          
   24          
   25          void main(void)
   26          {
-  27   1        unsigned char i;
-  28   1        while(1)
+  27   1        unsigned char i;    //定义计数变量
+  28   1        while(1)        //死循环
   29   1        {
-  30   2          for(i=0;i<100;i++)
+  30   2          for(i=0;i<100;i++)  //0~100次输出为递增，即上升部分
   31   2          {
   32   3            DA_OUTPUT(i);
   33   3          }
-  34   2          for(i=100;i>0;i++)
+  34   2          for(i=100;i>0;i++)  //100~0次输出为递减，即下降部分
   35   2          {
   36   3            DA_OUTPUT(i);
   37   3          }
