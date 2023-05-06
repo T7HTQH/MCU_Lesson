@@ -57,16 +57,20 @@ void seg_showln(float number)							//定义数码管整体显示函数
 		point_flag=0;									//重置小数点标志位
 		for(i=0;i<8;)									//没有遇到小数点前正常显示
 		{
-
+			
 			if(change[i]=='.')							//遇到小数点后将小数点标志位置1
 			{
 				point_flag=1;
 				con=i;
 				seg_show(i,change[i-1]-48,point_flag);	//给小数点所在数字显示添加小数点
 			}
-			else if(!(point_flag==1&&change[i]=='0'))	//防止小数位后不去除多余的0
+			else if(point_flag)	//防止小数位后不去除多余的0
 			{
 				seg_show(i+1-point_flag,change[i]-48,0);
+			}
+			else
+			{
+				seg_show(i,change[i-1]-48,0);
 			}
 			i++;
 
@@ -78,7 +82,7 @@ void main()
 {
 	while(1)											//死循环
 	{
-		seg_showln(10.1);								//显示小数
+		seg_showln(2023.05);								//显示小数
 	}
 	
 }

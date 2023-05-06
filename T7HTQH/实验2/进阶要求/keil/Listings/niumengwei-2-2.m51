@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    04/26/2023  10:45:40  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    05/06/2023  15:13:33  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
@@ -49,17 +49,17 @@ LINK MAP OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
             CODE    0003H     060EH     UNIT         ?C?LIB_CODE
             CODE    0611H     046FH     UNIT         ?PR?PRINTF?PRINTF
             CODE    0A80H     008CH     UNIT         ?C_C51STARTUP
-            CODE    0B0CH     008AH     UNIT         ?PR?_SEG_SHOWLN?MAIN
-            CODE    0B96H     004AH     UNIT         ?PR?_SEG_SHOW?MAIN
-            CODE    0BE0H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
-            CODE    0C07H     0013H     UNIT         ?C_INITSEG
-            CODE    0C1AH     0012H     UNIT         ?PR?_DELAY_MS?MAIN
-            CODE    0C2CH     000DH     UNIT         ?PR?MAIN?MAIN
-            CODE    0C39H     000AH     UNIT         ?CO?MAIN
+            CODE    0B0CH     0087H     UNIT         ?PR?_SEG_SHOWLN?MAIN
+            CODE    0B93H     004AH     UNIT         ?PR?_SEG_SHOW?MAIN
+            CODE    0BDDH     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    0C04H     0013H     UNIT         ?C_INITSEG
+            CODE    0C17H     0012H     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    0C29H     000DH     UNIT         ?PR?MAIN?MAIN
+            CODE    0C36H     000AH     UNIT         ?CO?MAIN
 
 
 
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/06/2023  15:13:33  PAGE 2
 
 
 OVERLAY MAP OF MODULE:   .\Objects\niumengwei-2-2 (MAIN)
@@ -97,52 +97,52 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   C:0000H         SYMBOL        _ICE_DUMMY_
   D:00A0H         PUBLIC        P2
   D:00B0H         PUBLIC        P3
-  C:0C2CH         PUBLIC        main
+  C:0C29H         PUBLIC        main
   C:0B0CH         PUBLIC        _seg_showln
   D:0008H         PUBLIC        seg
-  C:0C3CH         SYMBOL        _?ix1000
-  C:0C1AH         PUBLIC        _delay_ms
-  C:0B96H         PUBLIC        _seg_show
+  C:0C39H         SYMBOL        _?ix1000
+  C:0C17H         PUBLIC        _delay_ms
+  C:0B93H         PUBLIC        _seg_show
   -------         PROC          _DELAY_MS
   D:0007H         SYMBOL        t
   -------         DO            
   D:0006H         SYMBOL        i
   -------         ENDDO         
-  C:0C1AH         LINE#         18
-  C:0C1AH         LINE#         19
-  C:0C1AH         LINE#         21
-  C:0C20H         LINE#         22
-  C:0C20H         LINE#         23
-  C:0C2BH         LINE#         24
-  C:0C2BH         LINE#         25
+  C:0C17H         LINE#         18
+  C:0C17H         LINE#         19
+  C:0C17H         LINE#         21
+  C:0C1DH         LINE#         22
+  C:0C1DH         LINE#         23
+  C:0C28H         LINE#         24
+  C:0C28H         LINE#         25
   -------         ENDPROC       _DELAY_MS
   -------         PROC          _SEG_SHOW
   D:0007H         SYMBOL        where
   D:0004H         SYMBOL        num
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/06/2023  15:13:33  PAGE 3
 
 
   D:0003H         SYMBOL        point
-  C:0B96H         LINE#         27
-  C:0B96H         LINE#         28
-  C:0B96H         LINE#         29
-  C:0BABH         LINE#         30
-  C:0BABH         LINE#         31
-  C:0BB0H         LINE#         32
-  C:0BB5H         LINE#         33
-  C:0BBAH         LINE#         34
-  C:0BBFH         LINE#         35
-  C:0BC4H         LINE#         36
-  C:0BCEH         LINE#         37
-  C:0BCEH         LINE#         38
-  C:0BD1H         LINE#         39
-  C:0BD1H         LINE#         40
-  C:0BD4H         LINE#         41
-  C:0BD4H         LINE#         42
-  C:0BDAH         LINE#         43
-  C:0BDAH         LINE#         44
-  C:0BDFH         LINE#         45
-  C:0BDFH         LINE#         47
+  C:0B93H         LINE#         27
+  C:0B93H         LINE#         28
+  C:0B93H         LINE#         29
+  C:0BA8H         LINE#         30
+  C:0BA8H         LINE#         31
+  C:0BADH         LINE#         32
+  C:0BB2H         LINE#         33
+  C:0BB7H         LINE#         34
+  C:0BBCH         LINE#         35
+  C:0BC1H         LINE#         36
+  C:0BCBH         LINE#         37
+  C:0BCBH         LINE#         38
+  C:0BCEH         LINE#         39
+  C:0BCEH         LINE#         40
+  C:0BD1H         LINE#         41
+  C:0BD1H         LINE#         42
+  C:0BD7H         LINE#         43
+  C:0BD7H         LINE#         44
+  C:0BDCH         LINE#         45
+  C:0BDCH         LINE#         47
   -------         ENDPROC       _SEG_SHOW
   -------         PROC          _SEG_SHOWLN
   D:0022H         SYMBOL        number
@@ -169,23 +169,26 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   C:0B5DH         LINE#         65
   C:0B6DH         LINE#         66
   C:0B6FH         LINE#         67
-  C:0B7BH         LINE#         68
-  C:0B7BH         LINE#         69
-  C:0B91H         LINE#         70
-  C:0B91H         LINE#         71
-  C:0B92H         LINE#         73
-  C:0B95H         LINE#         75
+  C:0B72H         LINE#         68
+  C:0B72H         LINE#         69
+  C:0B79H         LINE#         70
+  C:0B7BH         LINE#         72
+  C:0B7BH         LINE#         73
+  C:0B8EH         LINE#         74
+  C:0B8EH         LINE#         75
+  C:0B8FH         LINE#         77
+  C:0B92H         LINE#         79
   -------         ENDPROC       _SEG_SHOWLN
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/06/2023  15:13:33  PAGE 4
+
+
   -------         PROC          MAIN
-  C:0C2CH         LINE#         77
-  C:0C2CH         LINE#         78
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 4
-
-
-  C:0C2CH         LINE#         79
-  C:0C2CH         LINE#         80
-  C:0C2CH         LINE#         81
-  C:0C37H         LINE#         82
+  C:0C29H         LINE#         81
+  C:0C29H         LINE#         82
+  C:0C29H         LINE#         83
+  C:0C29H         LINE#         84
+  C:0C29H         LINE#         85
+  C:0C34H         LINE#         86
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -236,12 +239,12 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   -------         MODULE        ?C?CSTPTR
   C:05C9H         PUBLIC        ?C?CSTPTR
   -------         ENDMOD        ?C?CSTPTR
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  05/06/2023  15:13:33  PAGE 5
+
+
 
   -------         MODULE        ?C?PLDIIDATA
   C:05DBH         PUBLIC        ?C?PLDIIDATA
-BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  04/26/2023  10:45:40  PAGE 5
-
-
   -------         ENDMOD        ?C?PLDIIDATA
 
   -------         MODULE        ?C?CCASE
@@ -249,8 +252,8 @@ SYMBOL TABLE OF MODULE:  .\Objects\niumengwei-2-2 (MAIN)
   -------         ENDMOD        ?C?CCASE
 
   -------         MODULE        PUTCHAR
-  C:0BE0H         PUBLIC        _PUTCHAR
+  C:0BDDH         PUBLIC        _PUTCHAR
   -------         ENDMOD        PUTCHAR
 
-Program Size: data=70.1 xdata=0 code=3139
+Program Size: data=70.1 xdata=0 code=3136
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

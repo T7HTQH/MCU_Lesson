@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.7.0   MAIN                                                              04/26/2023 10:45:40 PAGE 1   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/06/2023 15:13:24 PAGE 1   
 
 
 C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   51   1        long int what=0;                  //定义中间变量what，防止long int型数据在传输中出错
   52   1      
   53   1        unsigned char change[7]="";             //定义中间字符串
-C51 COMPILER V9.60.7.0   MAIN                                                              04/26/2023 10:45:40 PAGE 2   
+C51 COMPILER V9.60.7.0   MAIN                                                              05/06/2023 15:13:24 PAGE 2   
 
   54   1        unsigned char con=0,i=0,point_flag=0;       //定义变量以及标记
   55   1        
@@ -70,35 +70,39 @@ line level    source
   57   1          point_flag=0;                 //重置小数点标志位
   58   1          for(i=0;i<8;)                 //没有遇到小数点前正常显示
   59   1          {
-  60   2      
+  60   2            
   61   2            if(change[i]=='.')              //遇到小数点后将小数点标志位置1
   62   2            {
   63   3              point_flag=1;
   64   3              con=i;
   65   3              seg_show(i,change[i-1]-48,point_flag);  //给小数点所在数字显示添加小数点
   66   3            }
-  67   2            else if(!(point_flag==1&&change[i]=='0')) //防止小数位后不去除多余的0
+  67   2            else if(point_flag) //防止小数位后不去除多余的0
   68   2            {
   69   3              seg_show(i+1-point_flag,change[i]-48,0);
   70   3            }
-  71   2            i++;
-  72   2      
-  73   2          }
-  74   1      
-  75   1      }
-  76          
-  77          void main()
-  78          {
-  79   1        while(1)                      //死循环
-  80   1        {
-  81   2          seg_showln(10.1);               //显示小数
-  82   2        }
-  83   1        
-  84   1      }
+  71   2            else
+  72   2            {
+  73   3              seg_show(i,change[i-1]-48,0);
+  74   3            }
+  75   2            i++;
+  76   2      
+  77   2          }
+  78   1      
+  79   1      }
+  80          
+  81          void main()
+  82          {
+  83   1        while(1)                      //死循环
+  84   1        {
+  85   2          seg_showln(2023.05);                //显示小数
+  86   2        }
+  87   1        
+  88   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    243    ----
+   CODE SIZE        =    240    ----
    CONSTANT SIZE    =     10    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
